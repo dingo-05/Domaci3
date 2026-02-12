@@ -66,17 +66,17 @@ for veza in veze:
         G.add_edge(i,broj)
     i=i+1
 
-print("1. Suma svih brojeva")
+#print("1. Suma svih brojeva")
 suma = sum(dict(G.degree()).values()) - G.degree(v) - G.degree(t)
-print(suma)
+print("1)",suma)
 
-print("2. Postoji ovoliko najkracih puteva")
+#print("2. Postoji ovoliko najkracih puteva")
 i=0
 for path in nx.all_shortest_paths(G,v,t):
     i=i+1
-print(i)
+print("2)",i)
 
-print("3. Razliciti neighbori su")
+#print("3. Razliciti neighbori su")
 jedan=G.neighbors(v)
 prvi=list()
 for broj in jedan:
@@ -87,39 +87,42 @@ drugi=list()
 for broj in dva:
     drugi.append(broj)
 res=list(set(prvi).difference(set(drugi)) | set(drugi).difference(set(prvi)))
-print(res)
+ispis3=str(res)
+print("3)",ispis3[1:len(ispis3)-1])
 
-print("4. Cvorovi susedi v i t koji imaju stepen veci od proseka")
+#print("4. Cvorovi susedi v i t koji imaju stepen veci od proseka")
 avg_degree = sum(dict(G.degree()).values()) / G.number_of_nodes()
 komsije=list(set(prvi).union(set(drugi)))
 veci_od_proseka=list()
 for broj in komsije:
     if(G.degree(broj)>avg_degree):
         veci_od_proseka.append(broj)
-print(veci_od_proseka)
+ispis4=str(veci_od_proseka)[1:len(str(veci_od_proseka))-1]
+print("4)",ispis4)
 
-print("5. Podgraf v i t i njihovih komsija")
+#print("5. Podgraf v i t i njihovih komsija")
 S={v,t}|set(komsije)
 podgraf=G.subgraph(S).number_of_edges()
-print(podgraf)
-print("6. Svi nodovi koji su udelji najvise 3 od v i t")
+print("5)",podgraf)
+#print("6. Svi nodovi koji su udelji najvise 3 od v i t")
 naj_od_t=nx.single_source_shortest_path_length(G,t, 3)
 naj_t_set=set(naj_od_t.keys())
 naj_od_v=nx.single_source_shortest_path_length(G,v, 3)
 naj_v_set=set(naj_od_v.keys())
 udaljeni_tri_od_oba=naj_t_set.intersection(naj_v_set)
-print(udaljeni_tri_od_oba)
-print("7. Ekscentricitet od v + t")
+ispis6=str(udaljeni_tri_od_oba)
+print("6)",ispis6[1:len(ispis6)-1])
+#print("7. Ekscentricitet od v + t")
 ekscentriteti=nx.eccentricity(G)
-print(ekscentriteti[v]+ekscentriteti[t])
-print("8. Koliko povezanih komponenti ima cvor nakon uklanjanja dva najpovezanija cvora i v i t")
+print("7)",ekscentriteti[v]+ekscentriteti[t])
+#print("8. Koliko povezanih komponenti ima cvor nakon uklanjanja dva najpovezanija cvora i v i t")
 G2=G.copy()
 remaining = [n for n in G.nodes() if n not in {v, t}]
 sorted_rem = sorted(remaining, key=lambda x: (-G.degree(x), x))
 top2 = sorted_rem[:2]
 G2.remove_nodes_from(top2+[v,t])
-print(nx.number_connected_components(G2))
-print("9. Broj puteva duzine 3 izmedju v i t izmedju")
+print("8)",nx.number_connected_components(G2))
+#print("9. Broj puteva duzine 3 izmedju v i t izmedju")
 linije = unos.splitlines()
 matrica=np.zeros((len(linije),len(linije)))
 i=0
@@ -134,8 +137,8 @@ for line in linije:
 matrica.view()
 matrica3 = np.linalg.matrix_power(matrica, 3)
 
-print(matrica3[v][t])
-print("10. Matrice t i v broj puteva duzine 10 izmedju njih")
+print("9)",int(matrica3[v][t]))
+#print("10. Matrice t i v broj puteva duzine 10 izmedju njih")
 matrica10 = np.linalg.matrix_power(matrica, 10)
-# print(matrica10) # Optional: printing large matrices might clutter output
-print(matrica10[v][t])
+
+print("10)",int(matrica10[v][t]))
