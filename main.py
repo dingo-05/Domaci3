@@ -88,7 +88,7 @@ for broj in dva:
     drugi.append(broj)
 res=list(set(prvi).difference(set(drugi)) | set(drugi).difference(set(prvi)))
 ispis3=str(res)
-print("3)",ispis3[1:len(ispis3)-1])
+print("3)",ispis3[1:len(ispis3)-1] if res else "/")
 
 #print("4. Cvorovi susedi v i t koji imaju stepen veci od proseka")
 avg_degree = sum(dict(G.degree()).values()) / G.number_of_nodes()
@@ -98,7 +98,7 @@ for broj in komsije:
     if(G.degree(broj)>avg_degree):
         veci_od_proseka.append(broj)
 ispis4=str(veci_od_proseka)[1:len(str(veci_od_proseka))-1]
-print("4)",ispis4)
+print("4)",ispis4 if veci_od_proseka else "/")
 
 #print("5. Podgraf v i t i njihovih komsija")
 S={v,t}|set(komsije)
@@ -111,7 +111,7 @@ naj_od_v=nx.single_source_shortest_path_length(G,v, 3)
 naj_v_set=set(naj_od_v.keys())
 udaljeni_tri_od_oba=naj_t_set.intersection(naj_v_set)
 ispis6=str(udaljeni_tri_od_oba)
-print("6)",ispis6[1:len(ispis6)-1])
+print("6)",ispis6[1:len(ispis6)-1] if udaljeni_tri_od_oba else "/")
 #print("7. Ekscentricitet od v + t")
 ekscentriteti=nx.eccentricity(G)
 print("7)",ekscentriteti[v]+ekscentriteti[t])
