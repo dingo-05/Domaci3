@@ -10,4 +10,4 @@ pip install numpy
  - Promenite <b>v</b> i <b>t</b> sa onima koji vam pisu u tekstu zadatka
  - Pokrenite program
  - Samo iskopirajte ono sto vam pise posle broja zadatka
-Ako nadjete bilo kakav problem u kodu ili ne mozete da ga pokrenete slobodno me kontaktirajte
+ - Ako nadjete bilo kakav problem u kodu ili ne mozete da ga pokrenete slobodno me kontaktirajte
